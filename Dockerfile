@@ -13,5 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # アプリケーション全体をコピー
 COPY . .
 
+ENV PORT=8080
+
 # FastAPI を起動（main.py の app オブジェクトを指定）
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
