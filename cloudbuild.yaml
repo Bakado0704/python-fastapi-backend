@@ -3,18 +3,18 @@ options:
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    dir: '.'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/fastapi-app', '.']
-
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/fastapi-app'] 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args:
       [
         'gcloud', 'run', 'deploy', 'fastapi-app',
-        '--image', 'gcr.io/$PROJECT_ID/fastapi-app',
+        '--image', 'gcr.io/kado-fastapi-backend/fastapi-app',
         '--platform', 'managed',
         '--region', 'asia-northeast1',
         '--allow-unauthenticated'
       ]
 
 images:
-  - 'gcr.io/$PROJECT_ID/fastapi-app'
+  - 'gcr.io/kado-fastapi-backend/fastapi-app'
